@@ -5,8 +5,10 @@
 
         <div id="favorita" *ngIf="favorita">
             <h2 class="subheader">Pelicula favorita</h2>
-            <h4>{{favorita.title}}</h4>
-            <h5>{{favorita.year}}</h5>
+            <h4>{{favorita.title  | uppercase}}</h4>  <!-- Asi se usarian las pipes -->
+            <h5>{{favorita.year | espar}}</h5>
+            <!-- <h5>{{this.fecha | date}}</h5> -->
+            <h5>{{this.fecha | date: 'dd/MM/yyyy'}}</h5> <!-- Hay muchas maneras-->
         </div>
         <!-- 
         <button (click)="cambiarTitulo()">Pulsame</button>
