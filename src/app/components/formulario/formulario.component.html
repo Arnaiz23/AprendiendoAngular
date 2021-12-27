@@ -54,11 +54,13 @@
             <input type="submit" value="Enviar" class="btn btn-success" [disabled]="userForm.invalid">
         </form>
 
-        <h2 class="subheader">Eventos</h2>
-        <button (click)="hasDadoClick()">Dale click</button>
-        <input type="text"[(ngModel)]="campo" (blur)="hasSalido()"> <!-- Cuando sales del input -->
-        <input type="text"[(ngModel)]="campo" (keyup.enter)="hasSalido()"> <!-- Cuando pulsas el enter -->
-        {{campo}}
+        <div *ngIf="valor">
+            <h2 class="subheader">Eventos</h2>
+            <button (click)="hasDadoClick()">Dale click</button>
+            <input type="text"[(ngModel)]="campo" (blur)="hasSalido()"> <!-- Cuando sales del input -->
+            <input type="text"[(ngModel)]="campo" (keyup.enter)="hasSalido()"> <!-- Cuando pulsas el enter -->
+            {{campo}}
+        </div>
     </section>
 
     <app-sidebar></app-sidebar>

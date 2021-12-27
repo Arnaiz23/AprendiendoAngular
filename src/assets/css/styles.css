@@ -224,6 +224,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f85032', end
     cursor: pointer;
 }
 
+.btn-warning{
+    background-color: rgb(238, 165, 6);
+    color: white !important;
+}
+
+.btn-danger{
+    background-color: rgb(201, 21, 21);
+    color: white !important;
+    width: 90px;
+}
+
+.btn-warning:hover, .btn-danger:hover{
+    opacity: 0.8;
+}
+
 .btn-success{
     background-color: rgb(23, 150, 19);
     transition: background-color .2s;
@@ -349,7 +364,9 @@ textarea{
 }
 
 .article-detalle .image-wrap img{
-    width: 100%;
+    width: 70%;
+    height: 300px;
+    object-fit: cover;
 }
 
 
