@@ -10,6 +10,7 @@ export class FormularioComponent implements OnInit {
   public campo!: string;
 
   public title: string;
+  public valor: boolean;
 
   constructor() {
     this.title = "Formulario";
@@ -19,6 +20,7 @@ export class FormularioComponent implements OnInit {
       bio: "",
       genero: ""
     }
+    this.valor = false;
   }
 
   ngOnInit(): void {
