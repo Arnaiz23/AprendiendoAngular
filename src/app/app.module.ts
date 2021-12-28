@@ -4,6 +4,7 @@ import {routing, appRoutingProviders} from './app.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';  //MUY IMPORTANTE PARA HTTP
 import { MomentModule } from "angular2-moment"; //Pipes de fechas
+import { AngularFileUploaderModule } from 'angular-file-uploader'; //Modulo para subir imagenes
 
 import { AppComponent } from './app.component';
 import { MiComponente } from './components/mi-componente/mi-componente.component';
@@ -22,6 +23,8 @@ import { PeliculaComponent } from './components/pelicula/pelicula.component';
 import { EsParPipe } from './pipes/espar.pipe';
 import { ArticlesComponent } from './components/articles/articles.component';
 import { ArticleComponent } from './components/article/article.component';
+import { SearchComponent } from './components/search/search.component';
+import { ArticleNewComponent } from './components/article-new/article-new.component';
 
 @NgModule({
   declarations: [
@@ -41,14 +44,17 @@ import { ArticleComponent } from './components/article/article.component';
     PeliculaComponent,
     EsParPipe,
     ArticlesComponent,
-    ArticleComponent
+    ArticleComponent,
+    SearchComponent,
+    ArticleNewComponent
   ],
   imports: [
     BrowserModule,
     routing,
     FormsModule,
     HttpClientModule,
-    MomentModule
+    MomentModule,
+    AngularFileUploaderModule
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]
