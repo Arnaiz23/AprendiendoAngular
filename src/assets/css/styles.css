@@ -262,7 +262,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f85032', end
     margin-top: 10px;
 }
 
-input[type="text"],textarea{
+input[type="text"],textarea,input[type="file"]{
     width: 100%;
     min-height: 30px;
     border: 1px solir #ccc;
