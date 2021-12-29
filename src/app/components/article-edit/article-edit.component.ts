@@ -6,18 +6,18 @@ import { global } from 'src/app/services/global';
 import swal from 'sweetalert'; //Alertas
 
 @Component({
-  selector: 'app-article-new',
-  templateUrl: './article-new.component.html',
-  styleUrls: ['./article-new.component.css'],
+  selector: 'app-article-edit',
+  templateUrl: '../article-new/article-new.component.html',  //Para reutilizar
+  styleUrls: ['./article-edit.component.css'],
   providers: [ArticleService]
 })
-export class ArticleNewComponent implements OnInit {
+export class ArticleEditComponent implements OnInit {
 
   public article: Article;
   public status!: string;
+  public is_edit: boolean;
   public page_title: string;
 
-  public is_edit!: boolean;
   public url!: string;
 
   afuConfig = {
@@ -51,30 +51,32 @@ export class ArticleNewComponent implements OnInit {
     private _router: Router
   ) {
     this.article = new Article("", "", "", null, "");
-    this.page_title = "Crear articulo";
+    this.is_edit = true;
+    this.page_title = "Editar articulo";
 
-    // this.url = global.url;
+    this.url = global.url;
   }
 
   ngOnInit(): void {
+    this.getArticle();
   }
 
   onSubmit() {
-
-    this._articleService.create(this.article).subscribe(
+    let id = this.article._id;
+    this._articleService.update(this.article._id, this.article).subscribe(
       response => {
         if (response.status == "success") {
           this.status = "success";
           this.article = response.article;
 
-          // Alerta. Hay que editar el fichero de ese modulo y quitar la declaracion que da error
+          // Alerta
           swal(
-            "Articulo creado!!",
-            "El articulo se ha creado correctamente",
+            "Articulo editado!!",
+            "El articulo se ha editado correctamente",
             "success"
           );
-
-          this._router.navigate(["/blog"]);
+          
+          this._router.navigate(["/blog/article", id]);
           // console.log(this.article)
         } else {
           this.status = "error";
@@ -83,6 +85,11 @@ export class ArticleNewComponent implements OnInit {
       error => {
         console.log(error);
         this.status = error;
+        swal(
+          "Edicion fallida!!",
+          "El articulo no se ha editado correctamente",
+          "error"
+        );
       }
     )
   }
@@ -91,4 +98,25 @@ export class ArticleNewComponent implements OnInit {
     let image_data = data.body;
     this.article.image = image_data.image;
   }
+
+  getArticle(){
+    this._route.params.subscribe(params => {
+      let id = params["id"];
+
+      this._articleService.getArticle(id).subscribe(
+        response => {
+          if(response.article){
+            this.article = response.article;
+          }else{
+            this._router.navigate(['/home']);
+          }
+        },
+        error => {
+          console.log(error);
+          this._router.navigate(['/home']);
+        }
+      );
+    });
+  }
+
 }
